@@ -12,6 +12,13 @@ export type Config = {
   addressToSlash?: string
 }
 
+/**
+ * Loads the configuration from environment variables and returns a Config object.
+ * Throws an error if required environment variables are missing.
+ *
+ * @returns {Config} The configuration object populated with values from the environment variables.
+ * @throws {Error} If any required environment variables are missing.
+ */
 function loadConfig() {
   const chainDecimals = parseInt(process.env.CHAIN_DECIMALS ?? '0')
   const balanceThreshold = parseInt(process.env.BALANCE_THRESHOLD ?? '0')
@@ -55,7 +62,12 @@ function loadConfig() {
     addressToSlash,
   }
 }
-
+/**
+ * Retrieves the application configuration. If the configuration has not been loaded yet,
+ * it calls loadConfig to load the configuration from environment variables.
+ *
+ * @returns {Config} The loaded configuration object.
+ */
 export function getConfig(): Config {
   if (!config) {
     config = loadConfig()

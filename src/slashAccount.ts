@@ -3,7 +3,20 @@ import { logger } from './logger'
 import { ApiPromise, Keyring, WsProvider } from '@polkadot/api'
 import { getAccountsExceedingThreshold, getFilteredAmountsToSlash, loadWhitelist } from './balances'
 import { forceTransfer } from './extrinsics'
-
+/**
+ * The main function to slash accounts with balances exceeding a specified threshold.
+ * This function performs the following steps:
+ * 1. Loads the configuration settings.
+ * 2. Initializes the API and keyring.
+ * 3. Retrieves accounts with balances exceeding the threshold.
+ * 4. Loads the whitelist of accounts to exclude from slashing.
+ * 5. Calculates the amounts to slash to bring balances down to the target.
+ * 6. Optionally filters the accounts to slash based on a forced address.
+ * 7. Executes the force transfer for each account to be slashed.
+ * 8. Logs the results of the slashing process.
+ *
+ * @returns {Promise<void>} A promise that resolves when the slashing process is complete.
+ */
 export async function slashAccount(): Promise<void> {
   const { balanceTarget, nodeUrl, balanceThreshold, rootMnemonic, addressToSlash } = getConfig()
   logger.info('Starting...')

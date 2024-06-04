@@ -3,6 +3,17 @@ import { logger } from './logger'
 import { type KeyringPair } from '@polkadot/keyring/types'
 import { getConfig } from './config'
 
+/**
+ * Executes a force transfer of tokens using a sudo (superuser) account.
+ * This function allows a superuser to forcibly transfer tokens from any account to the superuser's account.
+ *
+ * @param {ApiPromise} api - The API service that allows interaction with the blockchain.
+ * @param {KeyringPair} sudoKey - The keyring pair for the sudo (superuser) account.
+ * @param {Object} params - An object containing the parameters for the transfer.
+ * @param {bigint} params.amount - The amount of tokens to be transferred.
+ * @param {string} params.from - The address from which tokens will be transferred.
+ * @returns {Promise<void>} A promise that resolves when the transaction has been processed.
+ */
 export async function forceTransfer(
   api: ApiPromise,
   sudoKey: KeyringPair,
