@@ -1,0 +1,22 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "settings": {},
+  "plugins": ["unused-imports", "@typescript-eslint"],
+  "rules": {
+    "curly": "error",
+    "prefer-const": "error",
+    "no-else-return": "error",
+    "complexity": ["error", 40],
+    "no-unneeded-ternary": "error",
+    "no-alert": "error",
+    "no-empty": "error",
+    "no-useless-catch": "error",
+    "unused-imports/no-unused-imports": "warn",
+    "@typescript-eslint/naming-convention": "warn",
+    "no-magic-numbers": "off"
+  }
+}
